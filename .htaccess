@@ -1,10 +1,7 @@
-# .htaccess
-
+# Block direct access to config.php only
 <Files "config.php">
-  Order allow,deny
-  Deny from all
+  Require all denied
 </Files>
 
-
-
-
+# Default to index.php
+DirectoryIndex index.php
