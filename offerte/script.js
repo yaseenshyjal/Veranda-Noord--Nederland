@@ -183,72 +183,74 @@ if (breedteInput && diepteInput) {
   diepteOutput.textContent = diepteInput.value;
 }
 
-  /*document.querySelector('#submit-btn').addEventListener('click', (e) => {
-  const finalStepIndex = document.querySelectorAll('.step').length - 1;
-  if (!validateStep(finalStepIndex)) {
-    e.preventDefault();
-  } else {
-    // submit the form or call your PDF/email logic
-  }
+/*document.querySelector('#submit-btn').addEventListener('click', (e) => {
+const finalStepIndex = document.querySelectorAll('.step').length - 1;
+if (!validateStep(finalStepIndex)) {
+  e.preventDefault();
+} else {
+  // submit the form or call your PDF/email logic
+}
 });*/
 
-  const submitBtn = document.getElementById('submit-btn');
+const submitBtn = document.getElementById('submit-btn');
 
-  if (submitBtn) {
-    submitBtn.addEventListener('click', () => {
-      console.log("🚀 Submit button clicked");
+if (submitBtn) {
+  submitBtn.addEventListener('click', () => {
+    console.log("🚀 Submit button clicked");
 
-      if (!validateStep(currentStep)) {
-        console.warn("❌ Validation failed. Submission stopped.");
-        return;
-      }
+    if (!validateStep(currentStep)) {
+      console.warn("❌ Validation failed. Submission stopped.");
+      return;
+    }
 
-      console.log("✅ Validation passed. Submitting form...");
+    console.log("✅ Validation passed. Submitting form...");
 
-      // Here you send data or call your WhatsApp/email logic
-
-
-      const customerData = {
-        voornaam: document.querySelector('[name="voornaam"]').value,
-        achternaam: document.querySelector('[name="achternaam"]').value,
-        email: document.querySelector('[name="email"]').value,
-        telefoon: document.querySelector('[name="telefoon"]').value,
-        postcode: document.querySelector('[name="postcode"]').value,
-        huisnummer: document.querySelector('[name="huisnummer"]').value,
-        woonplaats: document.querySelector('[name="woonplaats"]').value,
-        straatnaam: document.querySelector('[name="straatnaam"]').value,
-        opmerking: document.querySelector('[name="opmerking"]').value
-      };
-
-      const quoteData = {
-        ...selections,
-        klant: customerData
-      };
-
-      console.log("Quote Data:", quoteData);
-
-      // Example submit
-      // alert("Bedankt voor je aanvraag! Je offerte wordt verwerkt.");
-
-      // Optional: send to backend
-      fetch("send-email.php", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(selections),
-      })
-        .then(res => res.json())
-        .then(data => {
-          if (data.success) {
-            alert("✅ E-mail succesvol verzonden!");
-          } else {
-            alert("❌ E-mail verzenden mislukt.");
-          }
-        });
+    // Here you send data or call your WhatsApp/email logic
 
 
+    const customerData = {
+      voornaam: document.querySelector('[name="voornaam"]').value,
+      achternaam: document.querySelector('[name="achternaam"]').value,
+      email: document.querySelector('[name="email"]').value,
+      telefoon: document.querySelector('[name="telefoon"]').value,
+      postcode: document.querySelector('[name="postcode"]').value,
+      huisnummer: document.querySelector('[name="huisnummer"]').value,
+      woonplaats: document.querySelector('[name="woonplaats"]').value,
+      straatnaam: document.querySelector('[name="straatnaam"]').value,
+      opmerking: document.querySelector('[name="opmerking"]').value
+    };
 
-    });
-  }
+    const quoteData = {
+      ...selections,
+      klant: customerData
+    };
+
+    console.log("Quote Data:", quoteData);
+
+    // Example submit
+    // alert("Bedankt voor je aanvraag! Je offerte wordt verwerkt.");
+
+    // Optional: send to backend
+    fetch("/api/send-email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(selections)
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("✅ Offerte verzonden!");
+        } else {
+          alert("❌ Verzenden mislukt.");
+        }
+      });
+
+
+
+  });
+}
 
 
 function sendToWhatsApp() {
