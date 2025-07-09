@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Veranda Configurator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <div class="preview">
+            <img id="verandaImage" src="images/rechte.png" alt="Veranda Preview" class="show" />
+        </div>
+
+        <div class="form" id="verandaForm">
+            <!-- Step 1: Goot -->
+            <div class="step active">
+                <h2>Goot <span class="required">Verplicht</span></h2>
+                <div class="form-group">
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="goot" value="rechte" required />
+                        Rechte goot
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="goot" value="halfrond" />
+                        Halfronde goot
+                    </label>
+                </div>
+                </div>
+
+                <button onclick="nextStep()" id="" class="next-btn">Volgende →</button>
+            </div>
+            <!-- Step 2: Kleur -->
+            <div class="step">
+                <h2>Kleur <span class="required">Verplicht</span></h2>
+                <div class="form-group">
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="kleur" value="creme" required/>
+                        Creme (RAL 9001)
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="kleur" value="antraciet"  />
+                        Antraciet (RAL 7016)
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="kleur" value="zwart"  />
+                        Zwart (RAL 9005)
+                    </label>
+                </div>
+                </div>
+                <button onclick="prevStep()" class="prev-btn">←</button>
+                <button onclick="nextStep()" class="next-btn">Volgende → </button>
+            </div>
+            <!-- Step 3: Materiaal Dak -->
+            <div class="step">
+                <h2>Materiaal dak <span class="required">Verplicht</span></h2>
+                <div class="form-group">
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="dak" value="Polycarbonaat-Opaal" required />
+                        Polycarbonaat Opaal
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dak" value="Polycarbonaat-Helder" />
+                        Polycarbonaat Helder
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dak" value="Helder-Glas" />
+                        Helder Glas
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dak" value="Opaal-Glas" />
+                        Opaal Glas
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="dak" value="Getint-Glas" />
+                        Getint Glas
+                    </label>
+                </div>
+                </div>
+                <button onclick="prevStep()" class="prev-btn">←</button>
+                <button onclick="nextStep()" class="next-btn">Volgende → </button>
+            </div>
+            <!-- Step 4: Breedte & Diepte -->
+            <div class="step">
+                
+                <h2>Breedte <span class="required">Verplicht</span></h2>
+                <label>
+                    <div class="form-group">
+                    <span id="breedteOutput"> 0 </span> cm
+                    <input type="range" id="breedte" min="000" max="2000" value="0" required/>
+                    </div>
+                </label>
+
+                <h2>Diepte <span class="required">Verplicht</span></h2>
+                <label>
+                    <span id="diepteOutput"> 0 </span> cm
+                    <input type="range" id="diepte" min="000" max="2000" value="0" />
+                </label>
+                
+
+                <button onclick="prevStep()" class="prev-btn">←</button>
+                <button onclick="nextStep()" class="next-btn">Volgende →</button>
+            </div>
+            <!-- Step 5: Type zonwering  -->
+            <div class="step">
+                <div class="step-container">
+                    <h2>Type zonwering <span class="required">Verplicht</span></h2>
+                    <div class="form-group">
+
+                    <div class="radio-group" >
+                        <label class="radio-option">
+                            <input type="radio" name="zonwering" value="Geen-zonwering"  >
+                            <span>Geen zonwering</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="zonwering" value="Bovendak-zonwering"  >
+                            <span>
+                                <strong>Bovendak-zonwering</strong><br>
+                                <small>+ afstandsbediening</small>
+                            </span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="zonwering" value="Onderdak-zonwering"  >
+                            <span>
+                                <strong>Onderdak-zonwering</strong><br>
+                                <small>+ afstandsbediening</small>
+                            </span>
+                        </label>
+                    </div>
+
+                    </div>
+
+
+                    <div class="button-row">
+                        <button onclick="prevStep()" class="prev-btn">←</button>
+                        <button onclick="nextStep()" class="next-btn">Volgende → </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 6: Voorkant -->
+            <div class="step">
+                <div class="step-container">
+
+                    <h2>Type voorkant <span class="required">Verplicht</span></h2>
+                    <div class="form-group">
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="voorkant" value="Open-voorkant"  >
+                            <span>Open voorkant</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="voorkant" value="Glazen-schuifwanden-helder-glas"  >
+                            <span>Glazen schuifwanden helder glas</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="voorkant" value="Glazen-schuifwanden-getint-glas"  > 
+                            <span>Glazen schuifwanden getint glas</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="voorkant" value="Schuifpui"  >
+                            <span>Schuifpui</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="voorkant" value="Zip-screen"  >
+                            <span>Zip-screen</span>
+                        </label>
+                    </div>
+                    </div>
+
+
+                    <div class="button-row">
+                        <button onclick="prevStep()" class="prev-btn">←</button>
+                        <button onclick="nextStep()" class="next-btn">Volgende →</button>
+                    </div>
+
+
+
+                </div>
+            </div>
+            <!-- Step 7: Type linkerzijde  -->
+            <div class="step">
+                <div class="step-container">
+                    <div class="form-group">
+                        <h2>Type linkerzijde <span class="required">Verplicht</span></h2>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Open-linkerzijde"  >
+                                <span>Open linkerzijde</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zijwand-glas-en-deur"  >
+                                <span>Zijwand glas & deur</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zijwand-geheel-glas"  >
+                                <span>Zijwand geheel glas</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zijwand-geheel-polycarbonaat"  >
+                                <span>Zijwand geheel polycarbonaat</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zijwand-aluminium-glas-spie"  >
+                                <span>Zijwand aluminium & glazen spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zijwand-aluminium-polycarbonaat-spie"  >
+                                <span>Zijwand aluminium & polycarbonaat spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Schuifpui-glas-spie"   >
+                                <span>Schuifpui & glazen spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Schuifpui-polycarbonaat-spie"      >
+                                <span>Schuifpui & polycarbonaat spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Schuifwanden-glas-spie"  >
+                                <span>Glazen schuifwanden & glazen spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Schuifwanden-polycarbonaat-spie"  >
+                                <span>Glazen schuifwanden & polycarbonaat spie</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Spie-glas"  >
+                                <span>Spie glas</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Spie-polycarbonaat"  >
+                                <span>Spie polycarbonaat</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="linkerzijde" value="Zip-screen-glazen-spie"  >
+                                <span>Zip-screen & glazen spie</span>
+                            </label>
+                        </div>
+
+                        <div class="button-row">
+                            <button onclick="prevStep()" class="prev-btn">←</button>
+                            <button onclick="nextStep()" class="next-btn">Volgende →</button>
+                        </div>
+                    </div>
+
+                  
+                </div>
+            </div>
+            <!-- Step 8: Type rechterzijde  -->
+            <div class="step" id="step8">
+                <div class="form-group">
+                    <h2>Type rechterzijde</h2>
+                    <p class="required">Verplicht</p>
+
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Open rechterzijde"  >
+                            Open rechterzijde
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zijwand glas & deur"  >
+                            Zijwand glas & deur
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zijwand geheel glas"  >
+                            Zijwand geheel glas
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zijwand geheel polycarbonaat"  >
+                            Zijwand geheel polycarbonaat
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zijwand aluminium & glazen spie"  >
+                            Zijwand aluminium & glazen spie <br><small>Aluminium zijwand tot een hoogte van 180cm en het
+                                resterende van glas</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zijwand aluminium & polycarbonaat spie"  >
+                            Zijwand aluminium & polycarbonaat spie <br><small>Aluminium zijwand tot een hoogte van 180cm
+                                en het resterende van polycarbonaat</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Schuifpui & glazen spie"  >
+                            Schuifpui & glazen spie <br><small>Schuifpui tot een hoogte van 180cm en het resterende van
+                                glas</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Schuifpui & polycarbonaat spie"  >
+                            Schuifpui & polycarbonaat spie <br><small>Schuifpui tot een hoogte van 180cm en het
+                                resterende van polycarbonaat</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Glazen schuifwanden & glazen spie"  >
+                            Glazen schuifwanden & glazen spie <br><small>Glazen schuifwanden tot een hoogte van 180cm en
+                                het resterende van glas</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Glazen schuifwanden & polycarbonaat spie"  >
+                            Glazen schuifwanden & polycarbonaat spie <br><small>Glazen schuifwanden tot een hoogte van
+                                180cm en het resterende van polycarbonaat</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Spie glas"  >
+                            Spie glas
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Spie polycarbonaat"  >
+                            Spie polycarbonaat <br><small>Perfect voor bovenop de schutting</small>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="rechterzijde" value="Zip-screen & glazen spie"  >
+                            Zip-screen & glazen spie <br><small>Zip-screen tot een hoogte van 200cm en het resterende
+                                van glas</small>
+                        </label>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button onclick="prevStep()" class="prev-btn" >←</button>
+                        <button onclick="nextStep()" class="next-btn">Volgende →</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <!-- Step 9: Type verlichting -->
+            <div class="step" id="step9">
+                <div class="form-group">
+                    <h2>Type verlichting</h2>
+                    <p class=" ">Verplicht</p>
+
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="verlichting" value="Geen verlichting"  >
+                            Geen verlichting
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="verlichting" value="Koud wit"  >
+                            Koud wit
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="verlichting" value="Warm wit"  >
+                            Warm wit
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="verlichting" value="Dimbaar warm wit"  >
+                            Dimbaar warm wit <br><small>+ afstandsbediening</small>
+                        </label>
+                    </div>
+                    <div class="form-section">
+                        <div class="form-navigation">
+                            <button onclick="prevStep()" class="prev-btn">←</button>
+                            <button onclick="nextStep()" class="next-btn">Volgende →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 10: montage -->
+            <div class="step" id="step10">
+                <div class="form-group">
+                    <h2>Laten monteren?</h2>
+                    <p class="required">Verplicht</p>
+
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="montage" value="Ja"  >
+                            <strong>Ja</strong><br>
+                            Laat EG Veranda de montage uitvoeren
+                        </label>
+
+                        <label class="radio-option">
+                            <input type="radio" name="montage" value="Nee"  >
+                            <strong>Nee</strong><br>
+                            Laat een bouwpakket bezorgen
+                        </label>
+                    </div>
+
+                    <div class="form-navigation">
+                        <button onclick="prevStep()" class="prev-btn">←</button>
+                        <button onclick="nextStep()" class="next-btn">Volgende →</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Step 11: Persoonsgegevens-->
+            <div class="step" id="step11">
+                <h3>Waar mogen we de offerte naartoe sturen?</h3>
+
+                <div class="form-section">
+                    <div class="form-group">
+                        <h4>Persoonsgegevens <span class="verplicht">Verplicht</span></h4>
+                        <input type="text" name="voornaam" placeholder="Voornaam" required>
+                        <input type="text" name="achternaam" placeholder="Achternaam" required>
+                        <input type="email" name="email" placeholder="E-mailadres" required>
+                        <div class="phone-input">
+                        <span class="flag">🇳🇱 +31</span>
+                        <input type="tel" name="telefoon" placeholder="Telefoonnummer" required>
+                    </div>
+                    </div>
+                </div>
+
+                
+                <div class="form-group">
+                <div class="form-section">
+                    <h4>Adresgegevens <span class="verplicht">Verplicht</span></h4>
+                    <input type="text" name="postcode" placeholder="Postcode" required>
+                    <input type="text" name="huisnummer" placeholder="Huisnummer" required>
+                    <input type="text" name="woonplaats" placeholder="Woonplaats" required>
+                    <input type="text" name="straatnaam" placeholder="Straatnaam" required>
+                </div>
+                </div>
+
+                <div class="form-section">
+                    
+                        <h4>Stel hier jouw vraag <span class="optioneel">Optioneel</span></h4>
+                        <textarea name="opmerking" placeholder="Waar kunnen wij nog rekening mee houden?"></textarea>
+                    
+                </div>
+
+                <div class="step-nav">
+                    <button onclick="prevStep()" class="prev-btn">←</button>
+                    <button id="submit-btn" class="submit-button" type="button">Bevestigen ✓</button>
+                    <button onclick="sendToWhatsApp()" class="whatsapp-button" type="button" >WhatsApp ✓</button>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
