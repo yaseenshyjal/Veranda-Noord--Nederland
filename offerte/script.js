@@ -231,7 +231,7 @@ if (submitBtn) {
     // alert("Bedankt voor je aanvraag! Je offerte wordt verwerkt.");
 
     // Optional: send to backend
-    fetch("/api/send-email", {
+    fetch("https://verandanoordnederland.nl/send-email.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
